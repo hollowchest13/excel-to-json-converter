@@ -30,4 +30,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: excel-to-json-windows
-          path: dist/excel_to_json.exe
+          path: dist/__main__.exe

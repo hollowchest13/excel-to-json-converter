@@ -2,10 +2,8 @@ import json
 import sys
 from pathlib import Path
 from tkinter import filedialog, messagebox
-from tkinter.filedialog import askopenfilename
 from typing import Dict, List, Any
 import pandas as pd
-
 
 def main():
     try:
@@ -43,7 +41,7 @@ def get_base_dir() -> Path:
         return Path(__file__).resolve().parent
 
 def get_file_path() -> Path | None:
-    raw_path = askopenfilename(
+    raw_path = filedialog.askopenfilename(
         title="Choose Excel Files", filetypes=[("Excel Documents", "*.xlsx")]
     )
     return Path(raw_path) if raw_path else None

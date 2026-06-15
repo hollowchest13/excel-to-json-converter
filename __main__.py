@@ -1,4 +1,5 @@
 import json
+import sys
 from pathlib import Path
 from tkinter import filedialog, messagebox
 from tkinter.filedialog import askopenfilename
@@ -8,7 +9,7 @@ import pandas as pd
 
 def main():
     try:
-        current_dir_path = Path(__file__).resolve().parent
+        current_dir_path = get_base_dir()
         
         file_path = get_file_path()
         if not file_path:
@@ -35,6 +36,11 @@ def main():
             message=f"An unexpected critical error occurred:\n{type(main_e).__name__}: {main_e}"
         )
 
+def get_base_dir() -> Path:
+    if getattr(sys, 'frozen', False):
+        return Path(sys.executable).resolve().parent
+    else:
+        return Path(__file__).resolve().parent
 
 def get_file_path() -> Path | None:
     raw_path = askopenfilename(
